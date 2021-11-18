@@ -38,7 +38,6 @@ link_directories(
 )
 
 find_package(GTest REQUIRED)
-find_package(Qwt)
 #
 # Extract working copy information for versioning
 execute_process(
