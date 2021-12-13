@@ -85,7 +85,7 @@ if( BUILD_TESTING )
             ${CMAKE_RUNTIME_OUTPUT_DIRECTORY}/${APP_NAME_TEST})
     target_link_libraries(
         ${APP_NAME_TEST}
-        GTest
+       -lgtest -lgtest_main -lpthread
     )
 endif()
                    
