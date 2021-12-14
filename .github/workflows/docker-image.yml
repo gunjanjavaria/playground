@@ -15,6 +15,6 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Build the Docker image
-      run: docker build - < dev/Dockerfile 
+      run: docker build --build-arg EXTRA_INCLUDE_PATHS=$EXTRA_INCLUDE_PATHS - < dev/Dockerfile 
       env:
           EXTRA_INCLUDE_PATHS: /home/root/include
