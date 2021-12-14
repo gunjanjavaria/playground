@@ -16,3 +16,5 @@ jobs:
     - uses: actions/checkout@v2
     - name: Build the Docker image
       run: docker build - < dev/Dockerfile 
+      env:
+          EXTRA_INCLUDE_PATHS: /home/root/include
