@@ -44,9 +44,9 @@ jobs:
     - name: Clone Repo
       run: |
         git clone https://github.com/gunjanjavaria/playground.git
-        mkdir -p /home/root/repos/playground/build
+        mkdir -p ~/root/repos/playground/build
     - name: CI-Build
-      working-directory: /home/root/repos/playground/build
+      working-directory: ~/root/repos/playground/build
       run: |
         cmake .. -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=Release
         make
