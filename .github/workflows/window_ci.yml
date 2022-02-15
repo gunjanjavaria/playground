@@ -40,7 +40,7 @@ jobs:
     - name: Prepare Libs
       run: |
         git clone https://github.com/danielaparker/jsoncons.git
-        cp -r jsoncons/include/jsoncons/ /home/root/include
+        cp -r jsoncons/include/jsoncons/ ~/root/include
     - name: Clone Repo
       run: |
         git clone https://github.com/gunjanjavaria/playground.git
