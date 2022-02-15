@@ -26,7 +26,7 @@ jobs:
     - uses: msys2/setup-msys2@v2
       with:
         location: D:\
-        install: base-devel cmake git subversion doxygen p7zip gtest
+        install: base-devel cmake git subversion doxygen p7zip mingw-w64-x86_64-gtest
     - name: Prepare
       run: |
           echo ' ' >> ~/.bashrc
