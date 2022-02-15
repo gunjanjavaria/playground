@@ -1,0 +1,53 @@
+# This is a basic workflow to help you get started with Actions
+
+name: CI-CMake_Windows
+
+# Controls when the workflow will run
+on:
+  # Triggers the workflow on push or pull request events but only for the main branch
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  build:
+    # The type of runner that the job will run on
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+    - uses: msys2/setup-msys2@v2
+      with:
+        location: D:\
+        install: base-devel cmake git subversion doxygen p7zip gtest
+    - name: Prepare
+      run: |
+          echo ' ' >> ~/.bashrc
+          echo '# exports for development' >> ~/.bashrc
+          echo 'export EXTRA_INCLUDE_PATHS=${HOME}/root/include' >> ~/.bashrc 
+          echo 'export EXTRA_LIB_PATHS=${HOME}/root/lib' >> ~/.bashrc 
+          echo ' ' >> ~/.bashrc
+          cd ~
+          mkdir -p root ; cd root
+          mkdir -p bin include lib temp ccpp_projects ccpp_projects/buildzone
+    - name: Prepare Libs
+      run: |
+        git clone https://github.com/danielaparker/jsoncons.git
+        cp -r jsoncons/include/jsoncons/ /home/root/include
+    - name: Clone Repo
+      run: |
+        git clone https://github.com/gunjanjavaria/playground.git
+        mkdir -p /home/root/repos/playground/build
+    - name: CI-Build
+      working-directory: /home/root/repos/playground/build
+      run: |
+        cmake .. -G "MSYS Makefiles" -DCMAKE_BUILD_TYPE=Release
+        make
+    
